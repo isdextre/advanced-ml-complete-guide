@@ -1,6 +1,49 @@
-Lee el archivo JSON en datos/customer_churn_data.json
+PROMPT 1 - ENFOQUE GENÉRICO (SIN ANÁLISIS)
+==========================================
 
-Propón UN modelo para predecir churn de clientes.
-Entrena, evalúa y reporta el AUC-ROC.
+INSTRUCCIÓN (para enviar a LLM):
+---
 
-Guarda tu código un archivo que crearás llamado solution_prompt_1.py
+Tengo un dataset JSON con datos de clientes (customer_churn_data.json).
+Quiero predecir si un cliente va a hacer churn en 90 días.
+
+El dataset tiene:
+- 3000 registros
+- 193 features numéricos
+- 1 target binario: churn_90d
+
+Necesito que:
+1. Cargues el JSON
+2. Hagas preprocessing básico (completar datos faltantes, encoding categóricas)
+3. Dividas en train/test
+4. Entrenes un modelo de clasificación
+5. Reportes el AUC-ROC
+
+Especificaciones:
+- Imputación: usa MEDIANA para valores faltantes
+- Split: 80/20 con stratify=y
+- Modelo: RandomForestClassifier
+- n_estimators: 100
+- Reporta el AUC final
+
+Nota: No necesito análisis previo de datos, solo un modelo rápido que funcione.
+
+---
+
+RESPUESTA ESPERADA DEL LLM:
+(Código Python que implementa lo anterior)
+
+RESULTADO:
+AUC-ROC: 0.5164
+
+INTERPRETACIÓN:
+El modelo fracasa porque:
+- Sin análisis previo, 70 features son ruido puro
+- 20 features tienen >80% datos faltantes
+- 23 features son near-constantes
+- 135 pares de features son redundantes
+- Desbalance extremo sin tratamiento
+
+CONCLUSIÓN:
+Sin EDA, incluso Random Forest fracasa en datos complejos.
+Esto demuestra por qué el Bloque 1 del taller es crítico.

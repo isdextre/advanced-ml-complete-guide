@@ -1,40 +1,41 @@
-================================================================================
-PROMPT 2 PARTE 1: ANÁLISIS EXPLORATORIO (EDA)
-================================================================================
+Lee el archivo JSON en datos/customer_churn_data.json
 
-Analiza este dataset de churn y reporta DETALLADAMENTE:
+Crea un Jupyter Notebook completo llamado solution_prompt_2_part1.ipynb
 
-1. **Valores faltantes (nulos)**
-   - % por columna
-   - Patrón: ¿MCAR, MNAR, MAR?
+El notebook debe contener celdas documentadas que realicen:
 
-2. **Desbalance de clases**
-   - % churners vs no-churners
-   - ¿Qué implica para la modelación?
+1. CARGA Y EXPLORACIÓN INICIAL
+   - Cargar JSON
+   - Shape, info del dataset
+   - Primeras filas
 
-3. **Outliers**
-   - En qué variables (detallado)
-   - Cuántos y qué percentiles
-   - ¿Transformar, eliminar, capping?
+2. MISSINGNESS
+   - % de nulos por feature
+   - ¿Correlacionan nulos con churn? (MNAR?)
+   - Visualización: mapa de nulos
 
-4. **Correlaciones**
-   - Variables más correlacionadas con churn_90d
-   - Multicolinealidad entre features
+3. DISTRIBUICIONES DEL TARGET
+   - Desbalance churn_90d
+   - Gráfico de proporciones
 
-5. **Distribuciones**
-   - Normalidad de variables numéricas
-   - Comportamiento por grupos (churners vs activos)
+4. DISTRIBUCIONES DE FEATURES
+   - Histogramas (numéricos)
+   - Boxplots (detectar outliers)
+   - ¿Qué features parecen ruido puro?
+   - ¿Cuáles tienen varianza muy baja?
 
-6. **Recomendaciones iniciales**
-   - Limpieza específica
-   - Transformaciones necesarias
+5. CORRELACIONES
+   - Matriz de correlación con churn
+   - Colinealidad (features casi idénticas)
+   - Heatmap de correlaciones
 
-DATASET:
-[PEGA AQUÍ EL CONTENIDO DE: ../datos/customer_churn_data.json]
+6. OUTLIERS
+   - Identifica features con outliers extremos
+   - Cuantifica: ¿cuántos? ¿qué magnitud?
 
-INSTRUCCIONES:
-- Responde de forma estructurada (usa markdown)
-- Guarda la respuesta en: ./eda_report.md
-- Este reporte será input para Prompt 2 Parte 2
+7. RESUMEN DIAGNÓSTICO FINAL
+   - Features problemáticas (ruido, nulos, outliers, colineales)
+   - Features que parecen tener señal
+   - Recomendaciones para Parte 2
 
-================================================================================
+Guarda el notebook en: ./solution_prompt_2_part1.ipynb
