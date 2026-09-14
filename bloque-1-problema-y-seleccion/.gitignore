@@ -1,0 +1,21 @@
+# Respuestas y outputs (no commitear, son pruebas locales)
+respuesta_prompt_1.txt
+respuesta_prompt_2.txt
+auc_prompt_1.txt
+auc_prompt_2.txt
+eda_report.md
+solucion_especializada.py
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,6 @@
+Lee el archivo JSON en datos/customer_churn_data.json
+
+Propón UN modelo para predecir churn de clientes.
+Entrena, evalúa y reporta el AUC-ROC.
+
+Guarda tu código un archivo que crearás llamado solution_prompt_1.py

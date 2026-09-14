@@ -1,0 +1,40 @@
+================================================================================
+PROMPT 2 PARTE 1: ANÁLISIS EXPLORATORIO (EDA)
+================================================================================
+
+Analiza este dataset de churn y reporta DETALLADAMENTE:
+
+1. **Valores faltantes (nulos)**
+   - % por columna
+   - Patrón: ¿MCAR, MNAR, MAR?
+
+2. **Desbalance de clases**
+   - % churners vs no-churners
+   - ¿Qué implica para la modelación?
+
+3. **Outliers**
+   - En qué variables (detallado)
+   - Cuántos y qué percentiles
+   - ¿Transformar, eliminar, capping?
+
+4. **Correlaciones**
+   - Variables más correlacionadas con churn_90d
+   - Multicolinealidad entre features
+
+5. **Distribuciones**
+   - Normalidad de variables numéricas
+   - Comportamiento por grupos (churners vs activos)
+
+6. **Recomendaciones iniciales**
+   - Limpieza específica
+   - Transformaciones necesarias
+
+DATASET:
+[PEGA AQUÍ EL CONTENIDO DE: ../datos/customer_churn_data.json]
+
+INSTRUCCIONES:
+- Responde de forma estructurada (usa markdown)
+- Guarda la respuesta en: ./eda_report.md
+- Este reporte será input para Prompt 2 Parte 2
+
+================================================================================
