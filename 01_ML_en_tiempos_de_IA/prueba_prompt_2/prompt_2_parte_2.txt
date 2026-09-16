@@ -1,0 +1,235 @@
+================================================================================
+PROMPT 2 PARTE 2: Construye tu modelo especializado
+================================================================================
+
+OBJETIVO:
+Usando lo que aprendiste del EDA, construye un modelo que prediga churn
+eliminando ruido y aplicando regularización.
+
+CONTEXTO DEL EDA:
+- 72 features con ruido puro (sin correlación con churn)
+- 20 features con >75% nulos
+- 96 features con varianza casi nula
+- 30 pares de features colineales
+- 10 features con outliers > 1,000,000
+- Desbalance: 88% no-churn, 12% churn
+
+================================================================================
+PASO 1: CARGAR Y ESTRUCTURAR DATOS
+================================================================================
+
+¿QUÉ HACER?
+Lee customer_churn_data.json y estructúralo como una tabla.
+Separa el target (churn_90d) de las features.
+Elimina columnas que no sean features (como IDs).
+
+¿POR QUÉ?
+Necesitas los datos en un formato manejable.
+
+PENSAMIENTO TÉCNICO:
+¿Cuántas features tienes al inicio?
+
+
+================================================================================
+PASO 2: ELIMINAR FEATURES CON NULOS MASIVOS
+================================================================================
+
+¿QUÉ HACER?
+Del EDA vimos features con >75% nulos.
+Elimina todas las features donde faltan >80% de los datos.
+
+¿POR QUÉ?
+Imputar 80% de una columna es inventar datos.
+
+PENSAMIENTO TÉCNICO:
+¿Cómo calcularías el % de nulos por feature?
+
+
+================================================================================
+PASO 3: IMPUTAR NULOS RESTANTES
+================================================================================
+
+¿QUÉ HACER?
+Los nulos que quedan (<20%) impútalos con una medida de tendencia central.
+
+¿POR QUÉ?
+No puedes entrenar con datos incompletos.
+Necesitas robustez ante outliers.
+
+PENSAMIENTO TÉCNICO:
+¿Media o mediana? ¿Por qué?
+(Del EDA: hay outliers extremos)
+
+
+================================================================================
+PASO 4: ELIMINAR FEATURES CON BAJA VARIANZA
+================================================================================
+
+¿QUÉ HACER?
+Del EDA vimos 96 features con varianza < 1.
+Elimina columnas donde casi todos los valores son iguales.
+
+¿POR QUÉ?
+Una columna constante no discrimina entre churn/no-churn.
+
+PENSAMIENTO TÉCNICO:
+¿Cómo medirías variación?
+¿Cuál sería un threshold?
+
+
+================================================================================
+PASO 5: ELIMINAR FEATURES SIN PODER PREDICTIVO
+================================================================================
+
+¿QUÉ HACER?
+Del EDA vimos 72 features con correlación casi cero con churn.
+Elimina todas las features que no se relacionan con el target.
+
+¿POR QUÉ?
+Sin relación con churn = ruido puro.
+
+PENSAMIENTO TÉCNICO:
+¿Cómo medirías relación entre feature y target?
+¿Cuál sería el threshold para "ruido"?
+CRITICAL: ¿Cuáles quedan con poder predictivo real?
+
+
+================================================================================
+PASO 6: ELIMINAR REDUNDANCIA EXTREMA
+================================================================================
+
+¿QUÉ HACER?
+Del EDA vimos 30 pares de features casi idénticas.
+Para cada par redundante, mantén solo la de mayor poder predictivo.
+
+¿POR QUÉ?
+Features duplicadas = ruido.
+
+PENSAMIENTO TÉCNICO:
+¿Cómo identificarías features "casi idénticas"?
+¿Cuál sería el threshold?
+¿Cómo elegirías cuál mantener?
+
+
+================================================================================
+PASO 7: NORMALIZAR FEATURES
+================================================================================
+
+¿QUÉ HACER?
+Del EDA vimos features con rangos muy diferentes (0-100 vs 0-1,000,000).
+Normaliza todas al mismo rango.
+
+¿POR QUÉ?
+Escalas diferentes confunden al modelo.
+
+PENSAMIENTO TÉCNICO:
+¿Qué método usarías?
+¿Cuál es más robusto ante outliers?
+(Del EDA: hay outliers > 1e6)
+
+
+================================================================================
+PASO 8: DIVIDIR EN TRAIN/TEST
+================================================================================
+
+¿QUÉ HACER?
+Divide el dataset 80/20.
+CRÍTICO: Mantén proporciones de churn en ambos sets.
+
+¿POR QUÉ?
+Evaluación justa y realista.
+
+PENSAMIENTO TÉCNICO:
+¿Cómo garantizarías proporciones iguales?
+
+
+================================================================================
+PASO 9: ELEGIR Y ENTRENAR MODELO
+================================================================================
+
+¿QUÉ HACER?
+Elige un algoritmo de clasificación binaria.
+Entrena en el conjunto de entrenamiento.
+
+¿POR QUÉ?
+Necesitas un modelo potente pero regularizado (para evitar overfitting).
+
+PENSAMIENTO TÉCNICO:
+¿Qué algoritmo elegirías?
+¿Cómo regularizarías?
+¿Qué parámetros controlarían la complejidad?
+
+
+================================================================================
+PASO 10: EVALUAR EN TEST
+================================================================================
+
+¿QUÉ HACER?
+Predice en test.
+Calcula AUC.
+
+¿POR QUÉ?
+AUC es la métrica para datos desbalanceados.
+
+PENSAMIENTO TÉCNICO:
+¿Tu AUC es mejor que 0.68 (Prompt 1)?
+
+
+================================================================================
+PASO 11: VALIDAR CONSISTENCIA
+================================================================================
+
+¿QUÉ HACER?
+Entrena el modelo 5 veces usando splits diferentes.
+Verifica que los resultados son consistentes.
+
+¿POR QUÉ?
+Un buen modelo da resultados similares sin importar cómo dividas.
+
+PENSAMIENTO TÉCNICO:
+¿El AUC es similar en todos los splits?
+¿Hay overfitting?
+
+
+================================================================================
+PASO 12: ENTENDER QUÉ APRENDIÓ
+================================================================================
+
+¿QUÉ HACER?
+Extrae los top 5 features más importantes según el modelo.
+
+¿POR QUÉ?
+Validar que el modelo aprendió patrones reales.
+
+PENSAMIENTO TÉCNICO:
+¿Tienen sentido los features importantes?
+¿Son los mismos del EDA?
+
+
+================================================================================
+PASO 13: COMPARAR CON PROMPT 1
+================================================================================
+
+¿QUÉ HACER?
+Compara tu AUC con el de Prompt 1 (0.68).
+
+¿POR QUÉ?
+Demostrar el impacto del EDA y feature engineering.
+
+PENSAMIENTO TÉCNICO:
+¿Cuánto mejor es?
+¿Cuál fue la decisión más impactante?
+
+
+================================================================================
+ENTREGA ESPERADA
+================================================================================
+
+✓ Features iniciales: 199
+✓ Features finales: ?
+✓ AUC final: ?
+✓ AUC mejor que 0.68: sí/no
+✓ AUC consistente en validación cruzada: sí/no
+✓ Top 3 features importantes: ?
+
+================================================================================
