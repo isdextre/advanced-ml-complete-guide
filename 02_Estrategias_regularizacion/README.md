@@ -22,7 +22,7 @@ Qué hiperparámetros controlar en cada modelo para reducir el sobreajuste.
 ### Tema 3: Segmentación, Ensambles e Híbridos
 Cuándo combinar modelos en lugar de seguir ajustando uno solo.
 
-🔗 **[Abrir en Colab](https://colab.research.google.com/drive/1FkJZTxHxXaePJfmmNuqFSWp6kBRm4M5C?usp=sharing)**
+🔗 **[Abrir en Colab](https://colab.research.google.com/drive/1f4gxjNOtI0ryU0hH-po2ph7yELdkWnTp?usp=sharing)**
 
 ---
 
